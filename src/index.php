@@ -34,7 +34,7 @@ $favoris = $result->fetchAll(PDO::FETCH_ASSOC);
             <td class ="border-2"><?php echo $favori['libelle'];?></td>
             <td class ="border-2"><?php echo $favori['date_creation'];?></td>
             <td class ="border-2"><?=$favori['url'];?></td>
-            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-400"><i class="fa-solid fa-pen-to-square"></i></button><button class = "mx-4 w-1/5 bg-red-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
+            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "mx-4 w-1/5 bg-red-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
         </tr>
         <?php
          }
