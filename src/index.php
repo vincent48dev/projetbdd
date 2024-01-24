@@ -13,32 +13,35 @@
   </h1>
   <?php include("pdo.php");?>
 <!-- zone de filtrage -->
-<?php   
+<?php
           // Affichage (SELECT) :
+        if(!empty($_GET['search'])){
+          $result = $pdo->query("SELECT domaine.nom_dom, favori.libelle, favori.url, favori.date_creation, favori.id_fav FROM favori INNER JOIN domaine ON favori.id_dom = domaine.id_dom WHERE libelle LIKE '%".$_GET['search']."%' OR nom_dom LIKE '%".$_GET['search']."%' OR url LIKE '%".$_GET['search']."%'");
+        } else{
+            if(isset($_GET['categorie'],$_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] !== "none"){
+                $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie']." AND domaine.id_dom=".$_GET['domaine'].";");
+             }else{
+                if(isset($_GET['domaine']) && $_GET['domaine'] !== "none" && $_GET['categorie'] == "none"){
+                    $result = $pdo->query("SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom WHERE domaine.id_dom=".$_GET['domaine']." ORDER BY id_fav ASC;");
+            }else{
+                if(isset($_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] == "none"){
+                    $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie'].";");  
+            }else{
+                $requestsql= "SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom ORDER BY id_fav ASC";
+                $result = $pdo->query($requestsql);
+                var_dump($requestsql);
+            }
+    
+          }
+    
+          }}
+    
+
+
+
       
-       
-
-
-      if(isset($_GET['categorie'],$_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] !== "none"){
-        $result = $pdo->query("SELECT * FROM `favori` INNER JOIN `cat_fav` ON favori.id_fav=cat_fav.id_fav INNER JOIN `domaine` ON favori.id_dom=domaine.id_dom INNER JOIN `categorie` ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie']." AND domaine.id_dom=".$_GET['domaine'].";");
-        $favoris = $result->fetchAll(PDO::FETCH_ASSOC); 
-      }else{
-        if(isset($_GET['domaine']) && $_GET['domaine'] !== "none" && $_GET['categorie'] == "none"){
-        $result = $pdo->query("SELECT * FROM `favori` INNER JOIN `domaine` ON favori.id_dom=domaine.id_dom WHERE domaine.id_dom=".$_GET['domaine']." ORDER BY `id_fav` ASC;");
-        $favoris = $result->fetchAll(PDO::FETCH_ASSOC); 
-      }else{
-        if(isset($_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] == "none"){
-          $result = $pdo->query("SELECT * FROM `favori` INNER JOIN `cat_fav` ON favori.id_fav=cat_fav.id_fav INNER JOIN `domaine` ON favori.id_dom=domaine.id_dom INNER JOIN `categorie` ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie'].";");
-          $favoris = $result->fetchAll(PDO::FETCH_ASSOC); 
-        }else{
-          $result = $pdo->query("SELECT * FROM `favori` INNER JOIN `domaine` ON favori.id_dom=domaine.id_dom ORDER BY `id_fav` ASC;");
-          $favoris = $result->fetchAll(PDO::FETCH_ASSOC); 
-        }
-
-      }
-        
-      }
-    ?> 
+      $favoris = $result->fetchAll(PDO::FETCH_ASSOC);
+    ?>
     <!-- zone de filtrage -->
 ﻿
 
@@ -70,6 +73,9 @@
         };
         ?>
       </select>
+      <label for="site-search">Search the site:</label>
+        <input type="search" id="" name="search" />
+        <button type="submit" class="border border-amber-900">Filtrer</button>
       <button class="bg-blue-400 ml-5 border-2 px-4">filtrer</button>
     </form>
   </section>
@@ -89,7 +95,7 @@
             <td class ="border-2 py-2"><?php echo $favori['id_fav'];?></td>
             <td class ="border-2"><?php echo $favori['libelle'];?></td>
             <td class ="border-2"><?php echo $favori['date_creation'];?></td>
-            <td class ="border-2"><?=$favori['url'];?></td>
+            <td class ="border-2"><a href="<?=$favori['url'];?>"><?=$favori['url'];?></a></td>
             <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "mx-4 w-1/5 bg-red-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
         </tr>
         <?php
