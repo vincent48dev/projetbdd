@@ -29,7 +29,7 @@
             }else{
                 $requestsql= "SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom ORDER BY id_fav ASC";
                 $result = $pdo->query($requestsql);
-                var_dump($requestsql);
+      
             }
     
           }
@@ -73,10 +73,10 @@
         };
         ?>
       </select>
-      <label for="site-search">Search the site:</label>
+        <button type="submit" class="border border-amber-900"></button>
+      <button class="bg-blue-400 ml-5 border-2 px-4 ">filtrer</button>
+      <label class="ml-4" for="site-search">Search the site:</label>
         <input type="search" id="" name="search" />
-        <button type="submit" class="border border-amber-900">Filtrer</button>
-      <button class="bg-blue-400 ml-5 border-2 px-4">filtrer</button>
     </form>
   </section>
   <section class="w-full flex justify-center mt-28">
