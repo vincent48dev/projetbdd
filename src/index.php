@@ -85,7 +85,7 @@
             <td class ="border-2"><?php echo $favori['libelle'];?></td>
             <td class ="border-2"><?php echo $favori['date_creation'];?></td>
             <td class ="border-2 "><a href="<?=$favori['url'];?>"><button class= "md:hidden"><i class="fa-solid fa-link"></i></button><p class = "max-md:hidden"><?=$favori['url'];?></p></a></td>
-            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "mx-4 w-1/5 bg-blue-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
+            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "text-red-600 mx-4 w-1/5 bg-blue-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
             <td class="text-center">
             <button class = "px-2"><a href="detail.php?favori=<?php echo $favori['id_fav']?>"><p class ="max-md:hidden">plus d'information</p><button class = "md:hidden"><i class="fa-solid fa-eye"></i></button></a></button>
           </td>
