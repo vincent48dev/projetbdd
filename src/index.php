@@ -1,17 +1,5 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
-  
-  <script src="https://kit.fontawesome.com/862e2d197c.js" crossorigin="anonymous"></script>
-</head>
-<body class = "bg-gray-400">
-  <h1 class="text-3xl font-bold underline mt-5 text-center mb-5 decoration-blue-800 text-blue-800">
-    PROJET BDD
-  </h1>
-  <?php include("pdo.php");?>
+
+  <?php include("head.php");?>
 <!-- zone de filtrage -->
 <?php
           // Affichage (SELECT) :
@@ -87,6 +75,7 @@
             <th class ="border-2">date de creation</th>
             <th class ="border-2">url</th>
             <th class ="border-2">Edition/Supression</th>
+            <th class ="border-2">A propos</th>
         </tr>
          <?php
           foreach($favoris as $favori){ 
@@ -97,6 +86,9 @@
             <td class ="border-2"><?php echo $favori['date_creation'];?></td>
             <td class ="border-2"><a href="<?=$favori['url'];?>"><?=$favori['url'];?></a></td>
             <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "mx-4 w-1/5 bg-red-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
+            <td class="text-center">
+            <button class = "px-2 rounded hover:bg-lime-400 bg-lime-600"><a href="detail.php?favori=<?php echo $favori['id_fav']?>">plus d'information</a></button>
+          </td>
         </tr>
         <?php
          }
