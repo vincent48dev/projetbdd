@@ -35,7 +35,7 @@
 
  <section class = "w-full flex justify-center text-black">
     <form class = "py-8" action=""method="GET">
-      <select class="rounded-md ml-4" name="categorie" id="formulaire">
+      <select class="rounded-md  ml-4" name="categorie" id="formulaire">
         <?php
           $data = $pdo->query("SELECT * FROM `categorie` ORDER BY `id_cat` ASC;");
           $categories = $data->fetchAll(PDO::FETCH_ASSOC);
