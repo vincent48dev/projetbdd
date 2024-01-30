@@ -109,14 +109,6 @@
                     };
                     ?> 
                 </span>
-
-            </div>
-            
-            <div class = " my-12 px-4 flex justify-center flex-wrap dark:text-white">
-                <textarea name="description" id="description" cols="30" rows="10" block class = "w-full p-2 ps-10 text-sm
-                    text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500
-                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                    dark:focus:border-blue-500 " placeholder = "bookmarks description here" maxlength = "16000000"></textarea>
             </div>
             <span class ="flex justify-center">
             <button class = "dark:text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none

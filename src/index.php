@@ -4,16 +4,16 @@
 <?php
           // Affichage (SELECT) :
         if(!empty($_GET['search'])){
-          $result = $pdo->query("SELECT domaine.nom_dom, favori.libelle, favori.url, favori.date_creation, favori.id_fav FROM favori INNER JOIN domaine ON favori.id_dom = domaine.id_dom WHERE libelle LIKE '%".$_GET['search']."%' OR nom_dom LIKE '%".$_GET['search']."%' OR url LIKE '%".$_GET['search']."%'");
+          $result = $pdo->query("SELECT domaine.nom_dom, favori.libelle, favori.url, favori.date_creation, favori.id_fav FROM favori INNER JOIN domaine ON favori.id_dom = domaine.id_dom WHERE libelle LIKE '%".$_GET['search']."%' OR nom_dom LIKE '%".htmlspecialchars($_GET['search'])."%' OR url LIKE '%".htmlspecialchars($_GET['search'])."%'");
         } else{
             if(isset($_GET['categorie'],$_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] !== "none"){
-                $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie']." AND domaine.id_dom=".$_GET['domaine'].";");
+                $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".htmlspecialchars($_GET['categorie'])." AND domaine.id_dom=".htmlspecialchars($_GET['domaine']).";");
              }else{
                 if(isset($_GET['domaine']) && $_GET['domaine'] !== "none" && $_GET['categorie'] == "none"){
-                    $result = $pdo->query("SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom WHERE domaine.id_dom=".$_GET['domaine']." ORDER BY id_fav ASC;");
+                    $result = $pdo->query("SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom WHERE domaine.id_dom=".htmlspecialchars($_GET['domaine'])." ORDER BY id_fav ASC;");
             }else{
                 if(isset($_GET['categorie']) && $_GET['categorie'] !== "none" && $_GET['domaine'] == "none"){
-                    $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".$_GET['categorie'].";");  
+                    $result = $pdo->query("SELECT * FROM favori INNER JOIN cat_fav ON favori.id_fav=cat_fav.id_fav INNER JOIN domaine ON favori.id_dom=domaine.id_dom INNER JOIN categorie ON cat_fav.id_cat=categorie.id_cat WHERE categorie.id_cat=".htmlspecialchars($_GET['categorie']).";");  
             }else{
                 $requestsql= "SELECT * FROM favori INNER JOIN domaine ON favori.id_dom=domaine.id_dom ORDER BY id_fav ASC";
                 $result = $pdo->query($requestsql);
