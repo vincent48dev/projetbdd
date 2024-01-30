@@ -67,6 +67,9 @@
         <input class ="rounded-md" type="search" id="" name="search" />
     </form>
   </section>
+  <section class= 'flex justify-center'>
+    <button class='my-16  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'><a href="create.php"><h2 class = ' dark:text-white'>add a bookmark</h2></a></button>
+  </section>
   <section class="w-full flex justify-center mt-28">
     <table class="w-5/6">
         <tr class = "border-2 bg-blue-400">
@@ -85,7 +88,8 @@
             <td class ="border-2"><?php echo $favori['libelle'];?></td>
             <td class ="border-2"><?php echo $favori['date_creation'];?></td>
             <td class ="border-2 "><a href="<?=$favori['url'];?>"><button class= "md:hidden"><i class="fa-solid fa-link"></i></button><p class = "max-md:hidden"><?=$favori['url'];?></p></a></td>
-            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "text-red-600 mx-4 w-1/5 bg-blue-400 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-trash"></i></button></td>
+            <td class = "text-center border-2"><button class = "mx-4 w-1/5 bg-blue-600 rounded-lg hover:bg-slate-200"><i class="fa-solid fa-pen-to-square"></i></button><button class = "text-red-600 mx-4 w-1/5 bg-blue-400 rounded-lg hover:bg-slate-200"><a href="confirm.php?favori=<?php echo $favori['id_fav'] ?>">
+            <i class="fa-solid fa-trash"></i></a></button></td>
             <td class="text-center">
             <button class = "r px-2"><a href="detail.php?favori=<?php echo $favori['id_fav']?>"><p class ="max-md:hidden">plus d'information</p><button class = "md:hidden"><i class="fa-solid fa-eye"></i></button></a></button>
           </td>
@@ -95,8 +99,6 @@
          ?>
     </table>
   </section>
-  <footer>
-    <h2 class ="text-center mt-16" >designbyLacanaille@FricandeauForever</h2>
-  </footer>
-</body>
-</html>
+<?php
+  include 'footer.php';
+?>
