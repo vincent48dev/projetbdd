@@ -2,7 +2,7 @@
   <?php include("head.php");?>
 <!-- zone de filtrage -->
 <?php
-          // Affichage (SELECT) :
+          // fonction de filtrage (requete sql) :
         if(!empty($_GET['search'])){
           $result = $pdo->query("SELECT domaine.nom_dom, favori.libelle, favori.url, favori.date_creation, favori.id_fav FROM favori INNER JOIN domaine ON favori.id_dom = domaine.id_dom WHERE libelle LIKE '%".$_GET['search']."%' OR nom_dom LIKE '%".htmlspecialchars($_GET['search'])."%' OR url LIKE '%".htmlspecialchars($_GET['search'])."%'");
         } else{
